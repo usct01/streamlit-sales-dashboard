@@ -14,9 +14,9 @@ st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout
 
 # ---- READ EXCEL ----
 @st.cache_data
-def get_data_from_excel():
+def get_data_from_excel(infile):
     df = pd.read_excel(
-        io="supermarkt_sales.xlsx",
+        io=infile,
         engine="openpyxl",
         sheet_name="Sales",
         skiprows=3,
@@ -26,8 +26,8 @@ def get_data_from_excel():
     # Add 'hour' column to dataframe
     df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
-with st.file_uploader()
-    df = get_data_from_excel()
+infile= st.file_uploader()
+df = get_data_from_excel(infile)
 
 # ---- SIDEBAR ----
 st.sidebar.header("Please Filter Here:")
