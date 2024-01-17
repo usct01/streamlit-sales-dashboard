@@ -26,7 +26,7 @@ def get_data_from_excel(infile):
     # Add 'hour' column to dataframe
     df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
-infile= st.file_uploader()
+infile= st.file_uploader("Upload File for Analysis")
 df = get_data_from_excel(infile)
 
 # ---- SIDEBAR ----
